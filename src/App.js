@@ -14,7 +14,7 @@ class App extends React.Component {
       super(props)
       this.state = {
         userInput: '',
-        repos: []
+        percentages: [],
       }
   }
 
@@ -24,8 +24,14 @@ class App extends React.Component {
     })
   }
 
-  logThings() {
-    console.log(this.state.userInput)
+  pressChartButton() {
+    this.setState({
+      percentages: []
+    })
+    var inputArray = this.state.userInput.split(', ');
+    for (let gene of inputArray) {
+      this.callApi(gene)
+    }
   }
 
   callApi(gene) {
@@ -47,13 +53,17 @@ class App extends React.Component {
       })
       .then(data => {
         this.setState({
-          repos: data
+          percentages: [...this.state.percentages, [gene, data]]
         })
       })
     }
   }
 
   render() {
+    const percentageItems = this.state.percentages.map((item) =>
+      <div>{item[1]}, {item[0]}</div>
+    );
+
     return (
       <Container>
         <Row>
@@ -62,16 +72,16 @@ class App extends React.Component {
             <InputGroup.Prepend>
               <InputGroup.Text>Enter Gene IDs Here:</InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl as="textarea" aria-label="With textarea" onChange={this.handleTextChange} />
+            <FormControl aria-label="With textarea" onChange={this.handleTextChange} />
             <InputGroup.Append>
-              <Button variant="outline-secondary" value={this.state.userInput} onClick={() => this.callApi(this.state.userInput)}>Chart</Button>
+              <Button variant="outline-secondary" value={this.state.userInput} onClick={() => this.pressChartButton()}>Chart</Button>
             </InputGroup.Append>
           </InputGroup>
           </Col>
         </Row>
         <Row>
           <Col>
-          {this.state.repos}
+          {percentageItems}
           </Col>
         </Row>
       </Container>
