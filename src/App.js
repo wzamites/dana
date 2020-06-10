@@ -1,13 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 import geneHash from './gene_results.js'
 
 import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends React.Component {
     this.setState({
       percentages: []
     })
-    var inputArray = this.state.userInput.split(', ');
+    var inputArray = this.state.userInput.split(', ')
     for (let gene of inputArray) {
       this.callApi(gene)
     }
@@ -62,7 +62,7 @@ class App extends React.Component {
   render() {
     const percentageItems = this.state.percentages.map((item) =>
       <div>{item[1]}, {item[0]}</div>
-    );
+    )
 
     return (
       <Container>
@@ -89,4 +89,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App

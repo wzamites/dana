@@ -1001,4 +1001,4 @@ const geneHash = {
 "XPA" : "7507"
 }
 
-export default geneHash;
+export default geneHash
