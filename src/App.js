@@ -11,13 +11,8 @@ import Col from 'react-bootstrap/Col'
 
 import {
   XYPlot,
-  XAxis,
   YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
   HorizontalBarSeries,
-  HorizontalBarSeriesCanvas,
-  BarSeries
 } from 'react-vis';
 
 class App extends React.Component {
