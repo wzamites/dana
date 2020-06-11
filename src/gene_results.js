@@ -1,3 +1,5 @@
+//TP53, EGFR, TNF, APOE, VEGFA, IL6, MTHFR, TGFB1, ESR1, ERBB2
+
 const geneHash = {
 "TP53" : "7157",
 "EGFR" : "1956",
