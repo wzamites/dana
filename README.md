@@ -35,6 +35,7 @@ Here I use Bootstrap for handling the input form and cadll presschartbutton() on
 
 ## What I didn't do
 
-- I would like to render the charts as soon as the user types one, or at least when the user hits "Enter".
-- APIs are called every time the user hits the chart button. I could build this such that if an API has already been called, the result can be stored in state
+- I would like to render the charts as soon as the user types one, or at least when the user hits "Enter". Now it only works on a mouse click.
+- APIs are called every time the user hits the button. I could build this such that if an API has already been called, the result can be stored in state
 - The order of elements on the chart does not match the order of the input due to the asyncrhonous nature of the application. The loop does not wait for an API call to finish in order to go on. So the chart is in order of which API gives the fastest response. This can be solved using async / await
+- I manually manipulated the .csv file into a JavaScript object. This object lives in src/gene_results.js. I could use a library to convert the .csv into an object so the user doesn't have to do it manually.
