@@ -82,7 +82,7 @@ class App extends React.Component {
             </InputGroup.Prepend>
             <FormControl aria-label="With textarea" onChange={this.handleTextChange} />
             <InputGroup.Append>
-              <Button type="submit" variant="outline-secondary" value={this.state.userInput} onClick={() => this.pressChartButton()}>Chart</Button>
+              <Button type="submit" variant="outline-secondary" value={this.state.userInput} onClick={() => this.pressChartButton()}>Show Chart</Button>
             </InputGroup.Append>
           </InputGroup>
           </Col>
