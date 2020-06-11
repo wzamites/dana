@@ -9,6 +9,17 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+import {
+  XYPlot,
+  XAxis,
+  YAxis,
+  VerticalGridLines,
+  HorizontalGridLines,
+  HorizontalBarSeries,
+  HorizontalBarSeriesCanvas,
+  BarSeries
+} from 'react-vis';
+
 class App extends React.Component {
   constructor(props) {
       super(props)
@@ -28,8 +39,9 @@ class App extends React.Component {
     this.setState({
       percentages: []
     })
-    var inputArray = this.state.userInput.split(', ')
+    let inputArray = this.state.userInput.split(', ')
     for (let gene of inputArray) {
+      gene = gene.toUpperCase()
       this.callApi(gene)
     }
   }
@@ -60,9 +72,10 @@ class App extends React.Component {
   }
 
   render() {
-    const percentageItems = this.state.percentages.map((item) =>
-      <div>{item[1]}, {item[0]}</div>
-    )
+    const data = []
+    for (let item of this.state.percentages) {
+      data.push({y: item[0], x: item[1]})
+    }
 
     return (
       <Container>
@@ -74,14 +87,17 @@ class App extends React.Component {
             </InputGroup.Prepend>
             <FormControl aria-label="With textarea" onChange={this.handleTextChange} />
             <InputGroup.Append>
-              <Button variant="outline-secondary" value={this.state.userInput} onClick={() => this.pressChartButton()}>Chart</Button>
+              <Button type="submit" variant="outline-secondary" value={this.state.userInput} onClick={() => this.pressChartButton()}>Chart</Button>
             </InputGroup.Append>
           </InputGroup>
           </Col>
         </Row>
         <Row>
           <Col>
-          {percentageItems}
+            <XYPlot width={400} height={50 + (50 * this.state.percentages.length)} yType="ordinal" margin={{left: 200}} xRange={[0, 100]}>
+              <YAxis />
+              <HorizontalBarSeries data={data} />
+            </XYPlot>
           </Col>
         </Row>
       </Container>
